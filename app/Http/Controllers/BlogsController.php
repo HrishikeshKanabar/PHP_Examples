@@ -30,7 +30,7 @@ class BlogsController extends Controller
      */
     public function create()
     {
-        //
+     return view('createblog');
     }
 
     /**
@@ -41,7 +41,12 @@ class BlogsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $blog = new Blog();
+        $blog->name= $request->name;
+        $blog->Description=$request->disc;
+
+        $blog->save();
+        return redirect("/blog");
     }
 
     /**
@@ -76,7 +81,13 @@ class BlogsController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        return "Success";
+        $blog->name= $request->name;
+        $blog->Description=$request->disc;
+
+        $blog->save();
+        return redirect("/blog");
+
+
     }
 
     /**
@@ -87,6 +98,9 @@ class BlogsController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        //
+        $blogToBeDeleted = Blog::find($blog->id);
+        $blogToBeDeleted->delete();
+        return redirect("/blog");
+
     }
 }

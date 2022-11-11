@@ -13,27 +13,34 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-    <a class="navbar-brand" href="/blog/">Quick Blogger</a>
+      <a class="navbar-brand" href="/blog">Quick Blogger</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/blog/">All blogs</a></li>
-      <li><a href="#">Add Blogs</a></li>
+      <li><a href="/blog">All blogs</a></li>
+      <li><a href="blog/create">Add Blogs</a></li>
     </ul>
   </div>
 </nav>
+<!-- For each of php -->
 
-<!--<?php echo $blog ?>-->
+<?php foreach($blogs as $blog){?>
 
 <center>
 <div class="card" style="padding:10px;margin:10px;width:500px;border:2px solid blue">
   <div class="card-body">
-    <h3 class="card-title">Name: <?php echo $blog['name'];?></h1>
-    <p class="card-text">Description: <?php echo $blog['Description'];?></p>
-    <p class="card-text">Created Date: <?php echo $blog['created_at'];?></p>
-    <p class="card-text">Created Date: <?php echo $blog['updated_at'];?></p>
+    <h3 class="card-title"><?php echo $blog['name'];?></h1>
+    <p class="card-text"><?php echo $blog['Description'];?></p>
+    <a href="/blog/<?php echo $blog['id'];?>" class="btn btn-primary">More details</a>
+    <a href="/blog/<?php echo $blog['id'];?>/edit" class="btn btn-primary">Edit</a>
+    <form action="/blog/<?php echo $blog['id']?>" method="POST" ><br/>
+     @csrf
+    <input type="hidden" name="_method" value="Delete">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
   </div>
 </div>
 </center>
 
+<?php } ?>
 </body>
 </html>

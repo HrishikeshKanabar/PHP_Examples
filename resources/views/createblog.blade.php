@@ -13,27 +13,30 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-    <a class="navbar-brand" href="/blog/">Quick Blogger</a>
+      <a class="navbar-brand" href="/blog/">Quick Blogger</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="/blog/">All blogs</a></li>
-      <li><a href="#">Add Blogs</a></li>
+      <li><a href="blog/create">Add Blogs</a></li>
     </ul>
   </div>
 </nav>
 
-<!--<?php echo $blog ?>-->
 
-<center>
-<div class="card" style="padding:10px;margin:10px;width:500px;border:2px solid blue">
-  <div class="card-body">
-    <h3 class="card-title">Name: <?php echo $blog['name'];?></h1>
-    <p class="card-text">Description: <?php echo $blog['Description'];?></p>
-    <p class="card-text">Created Date: <?php echo $blog['created_at'];?></p>
-    <p class="card-text">Created Date: <?php echo $blog['updated_at'];?></p>
-  </div>
+<form action="/blog" method="POST" style="padding:10px;margin:10px;width:500px;border:2px solid blue">
+@csrf
+
+<h1> Create Blog </h1>
+<div class="form-group" >
+    <label for="">Name</label>
+    <input type="text" class="form-control" id="name" placeholder="name" name="name">
 </div>
-</center>
+<div class="form-group">
+    <label for="">Description</label>
+    <input type="text" class="form-control" id="desc" placeholder="description" name="disc" >
+</div>
+<button type="submit" class="btn btn-primary">Store</button>
+</form>
 
 </body>
 </html>
